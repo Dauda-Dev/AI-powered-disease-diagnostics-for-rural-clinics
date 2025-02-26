@@ -14,7 +14,7 @@ def recognize_speech():
     with sr.Microphone() as source:
         st.write("Listening... Speak now!")
         try:
-            audio = recognizer.listen(source, timeout=5)  # Adjust timeout if needed
+            audio = recognizer.listen(source, timeout=20)  # Adjust timeout if needed
             text = recognizer.recognize_google(audio)
             return text
         except sr.UnknownValueError:

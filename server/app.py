@@ -1,6 +1,5 @@
 from flask import Flask, request, Response, jsonify
-from offlinellm import consult_llm
-from rag_llm import consult_rag_llm
+from test.offlinellm import consult_llm
 
 app = Flask(__name__)
 

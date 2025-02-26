@@ -30,9 +30,9 @@ def consult_rag_llm(question, model_name="llama3.2:latest"):
 
     prompt = ChatPromptTemplate.from_template(
         """
-            You are an helpful AI-powered disease diagnostic system in a rural clinic, please answer the question based on the 
+            You are a helpful AI-powered disease diagnostic system in a rural clinic, please answer the question based on the 
             provided context only. Please provide the most accurate response to the question.
-            If you do no not know the answer, please say"I don’t know the answer to that. Please ask your instructor
+            If you do no not know the answer, please say"I don’t know the answer to that. Please consult your medical professional."
             <context>
             {context}
             <context>
