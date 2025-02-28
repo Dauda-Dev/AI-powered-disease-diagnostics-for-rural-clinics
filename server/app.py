@@ -1,5 +1,6 @@
 from flask import Flask, request, Response, jsonify
 from test.offlinellm import consult_llm
+from rag_llm import consult_rag_llm
 
 app = Flask(__name__)
 
@@ -29,6 +30,21 @@ def diagnose():
                 buffer = buffer[split_index:]  # Keep the remaining text in buffer
 
     return Response(generate_response(), content_type="text/event-stream")
+
+
+@app.route("/diagnose/rag-llm", methods=["POST"])
+def diagnoseRagLlm():
+    """API endpoint for diagnosing symptoms using LLM"""
+    data = request.get_json()
+    symptoms = data.get("symptoms", "")
+
+    if not symptoms:
+        return jsonify({"error": "No symptoms provided"}), 400
+
+    # Get the diagnosis from the RAG-based LLM function
+    response_text = consult_rag_llm(symptoms)
+
+    return jsonify({"diagnosis": response_text})
 
 if __name__ == "__main__":
     app.run(debug=True)
