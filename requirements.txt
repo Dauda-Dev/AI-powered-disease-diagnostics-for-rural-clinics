@@ -21,3 +21,8 @@ langchain_openai
 langchain_groq
 pyttsx3 
 gtts
+faiss-cpu
+langchain-ollama
+sentence-transformers
+langchain-huggingface
+pypdf
