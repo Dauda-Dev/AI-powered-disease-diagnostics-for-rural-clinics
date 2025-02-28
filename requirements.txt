@@ -19,3 +19,5 @@ pyaudio
 SpeechRecognition
 langchain_openai
 langchain_groq
+pyttsx3 
+gtts
