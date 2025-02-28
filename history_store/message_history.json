@@ -1,0 +1,10 @@
+[
+    {
+        "role": "user",
+        "content": "fever, headache"
+    },
+    {
+        "role": "ai",
+        "content": "Based on your symptoms of fever and headache, I would like to know more about your condition. \n\nConsidering the main differential diagnoses for febrile patients in this region are malaria, brucellosis, leptospirosis, typhus, rickettsiosis, sepsis, and dengue, I need some additional information from you.\n\nCan you please tell me:\n\n1. The duration of your fever?\n2. Any gastrointestinal symptoms you're experiencing (abdominal pain, constipation, diarrhea, vomiting)?\n3. Have you noticed any rash or skin lesions on your body?\n4. Have you traveled to any areas with a higher risk of these diseases in the past few weeks?\n\nYour answers will help me narrow down the possible causes and provide a more accurate diagnosis."
+    }
+]

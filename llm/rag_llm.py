@@ -10,7 +10,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 
-VECTOR_DB_PATH="./vector_store"
+VECTOR_DB_PATH= "../vector_store"
 
 def create_vector_embeddings():
     embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -19,7 +19,7 @@ def create_vector_embeddings():
 
     else:
         print("path to data.....")
-        loader = PyPDFDirectoryLoader("./rag_data")
+        loader = PyPDFDirectoryLoader("../rag_data")
         docs = loader.load()
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         final_documents = text_splitter.split_documents(docs)
@@ -48,8 +48,8 @@ def consult_rag_llm(question, model_name="llama3.2:latest"):
     retrieval_chain = create_retrieval_chain(retriever, document_chain)
     response = retrieval_chain.invoke({'input': question})
     return response['answer']
-
-print("taking question...")
-print(consult_rag_llm("i have headache and fever what should i do?"))
+#
+# print("taking question...")
+# print(consult_rag_llm("i have headache and fever what should i do?"))
 
 
