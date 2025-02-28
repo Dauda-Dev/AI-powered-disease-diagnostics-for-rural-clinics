@@ -19,3 +19,8 @@ pyaudio
 SpeechRecognition
 langchain_openai
 langchain_groq
+faiss-cpu
+langchain-ollama
+sentence-transformers
+langchain-huggingface
+pypdf
