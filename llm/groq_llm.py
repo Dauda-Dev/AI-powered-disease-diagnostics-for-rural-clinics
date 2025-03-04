@@ -1,6 +1,6 @@
 import os
 import json
-from langchain_ollama import OllamaLLM
+import groq
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -13,6 +13,11 @@ VECTOR_DB_PATH = "../vector_store"
 HISTORY_FILE = "../history_store/message_history.json"
 MAX_HISTORY = 5  # Number of user-bot exchanges to keep
 
+# Set your Groq API Key
+GROQ_API_KEY = "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"  # Replace with your actual API key
+
+# Initialize Groq client
+groq_client = groq.Client(api_key=GROQ_API_KEY)
 
 # Ensure the JSON file exists
 if not os.path.exists(HISTORY_FILE):
@@ -49,11 +54,8 @@ def create_vector_embeddings():
     return vectors
 
 
-def consult_rag_llm_with_history(question, model_name="medllama2:latest"):
+def consult_rag_llm_groq_with_history(question, model_name="mixtral-8x7b-32768"):
     """Handles user queries using RAG-based retrieval and response generation."""
-    llm = OllamaLLM(model=model_name)
-
-
 
     # Limit conversation history length
     while len(MESSAGE_HISTORY) > MAX_HISTORY * 2:  # Each exchange has user + AI response
@@ -65,43 +67,47 @@ def consult_rag_llm_with_history(question, model_name="medllama2:latest"):
     # Format history as context
     history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in MESSAGE_HISTORY])
 
-    prompt = ChatPromptTemplate.from_template(
-        f"""
-        You are an AI-powered medical assistant for a rural clinic.  
-        Your task is to provide a **brief diagnosis** based on the user's symptoms and suggest **possible treatments** if applicable.  
-        Keep responses **concise and clear**, avoiding complex medical terms.
+    prompt = f"""
+    You are an AI-powered medical assistant for a rural clinic.
+    Your task is to provide a **brief diagnosis** based on the user's symptoms and suggest **possible treatments** if applicable.
+    Keep responses **concise and clear**, avoiding complex medical terms.
 
-        <history>
-        {history_text}
-        </history>
+    <history>
+    {history_text}
+    </history>
 
-        <context>
-        {{context}}
-        </context>
+    **Symptoms Provided:** {question}
 
-        **Symptoms Provided:** {{input}}
-
-        **Diagnosis:** [Provide a brief possible diagnosis]  
-        **Possible Treatment:** [List treatment options, if any]  
-        **Next Steps:** [If necessary, suggest actions like seeing a doctor or self-care measures]
-        """
-    )
+    **Diagnosis:** [Provide a brief possible diagnosis]  
+    **Possible Treatment:** [List treatment options, if any]  
+    **Next Steps:** [If necessary, suggest actions like seeing a doctor or self-care measures]
+    """
 
     vectors = create_vector_embeddings()
-    document_chain = create_stuff_documents_chain(llm, prompt)
     retriever = vectors.as_retriever()
-    retrieval_chain = create_retrieval_chain(retriever, document_chain)
+    retrieved_docs = retriever.invoke(question)  # Get relevant documents
 
-    response = retrieval_chain.invoke({'input': question})
+    context = "\n".join([doc.page_content for doc in retrieved_docs])  # Extract document content
+
+    # Make request to Groq
+    response = groq_client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": "You are an AI medical assistant helping rural patients."},
+            {"role": "user", "content": prompt.format(context=context)}
+        ],
+        temperature=0.5
+    )
+
+    answer = response.choices[0].message.content.strip()
 
     # Store the current question in history
     MESSAGE_HISTORY.append({"role": "user", "content": question})
 
     # Store AI response in history
-    MESSAGE_HISTORY.append({"role": "ai", "content": response['answer']})
+    MESSAGE_HISTORY.append({"role": "ai", "content": answer})
 
     # Save updated history again
     save_history()
 
-    return response['answer']
-
+    return answer
