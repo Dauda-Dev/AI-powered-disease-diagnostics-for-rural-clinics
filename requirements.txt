@@ -26,3 +26,7 @@ langchain-ollama
 sentence-transformers
 langchain-huggingface
 pypdf
+flask_cors
+requests
+aiohttp
+websocket-client
