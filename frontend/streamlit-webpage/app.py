@@ -1,9 +1,9 @@
-import streamlit as st
-import speech_recognition as sr
+'''import streamlit as st
+## import speech_recognition as sr
 import os
 from datetime import datetime
 import tempfile
-from gtts import gTTS
+## from gtts import gTTS
 import base64
 
 # Page configuration
@@ -238,4 +238,4 @@ with col3:
 
 # Footer
 st.markdown("---")
-st.markdown("Built with Streamlit and Python 🐍")
+st.markdown("Built with Streamlit and Python 🐍")'''
