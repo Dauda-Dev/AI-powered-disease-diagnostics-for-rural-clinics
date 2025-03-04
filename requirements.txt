@@ -30,3 +30,4 @@ flask_cors
 requests
 aiohttp
 websocket-client
+groq

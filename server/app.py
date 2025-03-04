@@ -6,6 +6,7 @@ import json
 import http.client
 import os
 from llm.rag_llm import consult_rag_llm
+from llm.groq_llm import consult_rag_llm_groq_with_history
 
 
 load_dotenv()
@@ -53,7 +54,7 @@ def diagnoseRagLlm():
         return jsonify({"error": "No symptoms provided"}), 400
 
     # Get the diagnosis from the RAG-based LLM function
-    response_text = consult_rag_llm_with_history(symptoms)
+    response_text =consult_rag_llm_groq_with_history(symptoms)
 
     return jsonify({"diagnosis": response_text})
 
