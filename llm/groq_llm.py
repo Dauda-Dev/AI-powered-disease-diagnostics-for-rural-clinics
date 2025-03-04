@@ -8,13 +8,16 @@ from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
+from flask.cli import load_dotenv
+
+load_dotenv()
 
 VECTOR_DB_PATH = "../vector_store"
 HISTORY_FILE = "../history_store/message_history.json"
 MAX_HISTORY = 5  # Number of user-bot exchanges to keep
 
 # Set your Groq API Key
-GROQ_API_KEY = "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"  # Replace with your actual API key
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")  # Replace with your actual API key
 
 # Initialize Groq client
 groq_client = groq.Client(api_key=GROQ_API_KEY)
@@ -70,7 +73,7 @@ def consult_rag_llm_groq_with_history(question, model_name="mixtral-8x7b-32768")
     prompt = f"""
     You are an AI-powered medical assistant for a rural clinic.
     Your task is to provide a **brief diagnosis** based on the user's symptoms and suggest **possible treatments** if applicable.
-    Keep responses **concise and clear**, avoiding complex medical terms.
+    Keep responses **concise and clear**, avoiding complex medical terms. also refer to the user by name if the name is provided.
 
     <history>
     {history_text}

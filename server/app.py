@@ -82,7 +82,7 @@ def transcribe_audio():
 
     print("transcript: ", transcript)
     # Pass the transcribed text to the diagnosis function
-    diagnosis = consult_rag_llm_with_history(transcript)
+    diagnosis = consult_rag_llm_groq_with_history(transcript)
 
     print("diagnosis: ", diagnosis)
     return jsonify({"transcript": transcript, "diagnosis": diagnosis})
