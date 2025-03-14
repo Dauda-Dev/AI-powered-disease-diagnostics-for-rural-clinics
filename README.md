@@ -21,13 +21,13 @@ This project is an AI-powered disease diagnosis system designed to help clinics 
    ```
 4. Run the backend server:  
    ```sh
-   python app.py
+   python ./server/app.py
    ```
 
 ### Mobile App Setup
 1. Navigate to the mobile app folder:  
    ```sh
-   cd mobile-app
+   cd frontend/mobile-app/AI-powered-disease-diagnostics-for-rural-clinics
    ```
 2. Install Expo:  
    ```sh
@@ -37,16 +37,12 @@ This project is an AI-powered disease diagnosis system designed to help clinics 
    ```sh
    npm install
    ```
-4. Create an `.env` file in the `mobile-app` directory and add your API keys:
-   ```sh
-   DEEPGRAM_API_KEY=your_deepgram_api_key
-   GROQ_API_KEY=your_groq_api_key
-   ```
-5. Start the app using Expo:  
+
+4. Start the app using Expo:  
    ```sh
    npx expo start
    ```
-6. Use the **Expo Go** app on your phone or run the app on an emulator.
+5. Use the **Expo Go** app on your phone or run the app on an emulator.
 
 ## Features
 - Voice and text-based symptom input
