@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
@@ -107,9 +107,23 @@ export default function VoiceChatScreen() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+      <Image source={require('../assets/images/logo.png')} style={styles.logo} />
+      <Text style={styles.title}>Dokitor</Text>
+      </View>
+      <Text style={styles.describe}>
+        AI Powered Diagonis
+      </Text>
       <FlatList
         data={messages}
         keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{ flexGrow: 1 }}
+        /*ListHeaderComponent={() => (  // Add title above FlatList
+          <View style={styles.header}>
+            <Image source={require('../assets/images/logo.png')} style={styles.logo} />
+            <Text style={styles.title}>Dokitor</Text>
+          </View>
+        )}*/
         renderItem={({ item }) => (
           <Text style={item.sender === 'You' ? styles.userText : styles.aiText}>
             <Text style={styles.sender}>{item.sender}: </Text>
@@ -131,11 +145,14 @@ export default function VoiceChatScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' },
   userText: { color: 'lightblue', fontSize: 16, marginVertical: 5, alignSelf: 'flex-end' },
   aiText: { color: 'white', fontSize: 16, marginVertical: 5, alignSelf: 'flex-start' },
   sender: { fontWeight: 'bold', color: '#ff5252' },
-  speakButton: { width: 90, height: 90, borderRadius: 45, backgroundColor: '#ff5252', justifyContent: 'center', alignItems: 'center', marginVertical: 20, shadowColor: 'red', shadowOpacity: 0.5, shadowRadius: 10 },
+  speakButton: { width: 90, height: 90, borderRadius: 45, backgroundColor: '#113DEE', justifyContent: 'center', alignItems: 'center', marginVertical: 20, shadowColor: 'blue', shadowOpacity: 0.5, shadowRadius: 10 },
   status: { color: 'white', fontSize: 18, marginTop: 10 },
+  header: { flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 50,},
+  title: { color: '#113DEE',  fontSize: 30, fontWeight: 'bold', textAlign: 'center', marginVertical: 10, },
+  describe: { fontSize: 16, alignSelf: "center", }
 });
 
