@@ -1,11 +1,11 @@
 from flask import Flask, request, Response, jsonify
 from flask.cli import load_dotenv
 from flask_cors import CORS
-from llm.llm_with_history import consult_rag_llm_with_history
+# from llm.llm_with_history import consult_rag_llm_with_history
 import json
 import http.client
 import os
-from llm.rag_llm import consult_rag_llm
+# from llm.rag_llm import consult_rag_llm
 from llm.groq_llm import consult_rag_llm_groq_with_history
 
 
