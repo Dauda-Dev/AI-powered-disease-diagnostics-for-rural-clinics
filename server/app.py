@@ -47,7 +47,7 @@ def diagnose():
     return Response(generate_response(), content_type="text/event-stream")
 
 
-@app.route("/diagnose/rag-llm", methods=["POST"])
+@app.route("", methods=["POST"])
 def diagnoseRagLlm():
     """API endpoint for diagnosing symptoms using LLM"""
     data = request.get_json()
