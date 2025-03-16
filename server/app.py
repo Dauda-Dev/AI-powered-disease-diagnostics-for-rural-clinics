@@ -5,6 +5,9 @@ from flask_cors import CORS
 import json
 import http.client
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 # from llm.rag_llm import consult_rag_llm
 from llm.groq_llm import consult_rag_llm_groq_with_history
 

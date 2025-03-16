@@ -118,9 +118,10 @@ import json
 import groq
 from flask.cli import load_dotenv
 
+
 load_dotenv()
 
-HISTORY_FILE = "../history_store/message_history.json"
+HISTORY_FILE = "history_store/message_history.json"
 MAX_HISTORY = 5  # Number of user-bot exchanges to keep
 
 # Set your Groq API Key
