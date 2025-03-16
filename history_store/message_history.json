@@ -1,3 +1,10 @@
 [
-
+    {
+        "role": "user",
+        "content": "what was my last symptoms"
+    },
+    {
+        "role": "ai",
+        "content": "**Diagnosis:** Based on your previous symptoms, it's difficult for me to provide an accurate diagnosis without more information.\n\n**Possible Treatment:** I would recommend discussing your symptoms with a healthcare professional who can provide appropriate treatment options.\n\n**Next Steps:** Please provide a more detailed list of your current symptoms or consider scheduling an appointment with your healthcare provider."
+    }
 ]
