@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
+import checkForUpdates from '../components/CheckForUpdates'
 
 export default function VoiceChatScreen() {
   const [recording, setRecording] = useState(null);
@@ -11,6 +12,11 @@ export default function VoiceChatScreen() {
   const [messages, setMessages] = useState([]);
   const [pulseAnim] = useState(new Animated.Value(1));
   const [permissionResponse, requestPermission] = Audio.usePermissions();
+
+  useEffect(() => {
+    checkForUpdates();
+  }, []);
+
 
   // Pulse Animation Instance
   const pulseAnimation = Animated.loop(
@@ -62,7 +68,7 @@ export default function VoiceChatScreen() {
       formData.append('file', { uri: audioUri, name: 'audio.wav', type: 'audio/wav' });
       console.log("Sending audio to server...");
 
-      const response = await axios.post('http://192.168.146.215:5000/transcribe', formData, {
+      const response = await axios.post('https://api.swiftplugs.com/api/v1/audio/transcribe', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
