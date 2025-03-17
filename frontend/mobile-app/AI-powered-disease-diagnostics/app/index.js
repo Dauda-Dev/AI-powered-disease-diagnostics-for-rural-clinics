@@ -1,7 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
-import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
@@ -120,7 +118,7 @@ export default function VoiceChatScreen() {
       <Text style={styles.title}>Dokitor</Text>
       </View>
       <Text style={styles.describe}>
-        AI Powered Diagonis
+        AI Powered Diagnosis
       </Text>
       <FlatList
         data={messages}
