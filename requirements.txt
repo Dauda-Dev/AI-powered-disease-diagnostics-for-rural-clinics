@@ -1,9 +1,9 @@
 dotenv
 flask
-langchain
-langchain-community
-faiss-cpu
-pypdf
+# langchain
+# langchain-community
+# faiss-cpu
+# pypdf
 flask_cors
 requests
 aiohttp
@@ -15,4 +15,4 @@ psycopg2-binary
 # flask-socketio 
 eventlet
 flask_apscheduler
-websockets
+# websockets
