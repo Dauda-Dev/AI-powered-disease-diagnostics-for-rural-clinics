@@ -6,5 +6,21 @@
     {
         "role": "ai",
         "content": "**Diagnosis:** Based on your previous symptoms, it's difficult for me to provide an accurate diagnosis without more information.\n\n**Possible Treatment:** I would recommend discussing your symptoms with a healthcare professional who can provide appropriate treatment options.\n\n**Next Steps:** Please provide a more detailed list of your current symptoms or consider scheduling an appointment with your healthcare provider."
+    },
+    {
+        "role": "user",
+        "content": " I feel headache and I feel cold sweats at night and I take a bit of a sleep."
+    },
+    {
+        "role": "ai",
+        "content": "**Emily**, I've taken note of your symptoms. \n\n**Diagnosis:** Possible migraine or stress-related issue.\n\n**Possible Treatment:** \n1. Over-the-counter pain relievers like acetaminophen or ibuprofen.\n2. Stay hydrated by drinking plenty of water.\n3. Practice relaxation techniques, such as deep breathing or meditation, to help manage stress.\n\n**Next Steps:** Consider speaking with a healthcare professional to rule out any underlying conditions. In the meantime, try to maintain a consistent sleep schedule and a balanced diet."
+    },
+    {
+        "role": "user",
+        "content": " I feel a bit of headache and my mouth is hurting me. It seems like there's a growing boil inside it."
+    },
+    {
+        "role": "ai",
+        "content": "**Alex**, I've taken note of your symptoms.\n\n**Diagnosis:** Possible tooth abscess or gum infection.\n\n**Possible Treatment:** \n1. Rinse your mouth with warm salt water several times a day to reduce swelling and ease pain.\n2. Take over-the-counter pain relievers like ibuprofen or acetaminophen to manage pain and discomfort.\n3. Consider visiting a dentist to drain the abscess or prescribe antibiotics if necessary.\n\n**Next Steps:** Schedule an appointment with a dentist as soon as possible to get a proper diagnosis and treatment. In the meantime, avoid eating hot or spicy foods and maintain good oral hygiene."
     }
 ]

@@ -4,7 +4,7 @@
     "slug": "AI-powered-disease-diagnostics",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo_snd.jpg",
+    "icon": "./assets/images/heart-logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo_snd.jpg",
+        "foregroundImage": "./assets/images/heart-logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.dauda933.AIpowereddiseasediagnostics"
@@ -21,17 +21,23 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/logo.png"
+      "favicon": "./assets/images/heart-logo.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/logo_snd.jpg",
+          "image": "./assets/images/heart-logo.png",
           "imageWidth": 400,
           "resizeMode": "contain",
           "backgroundColor": "#000"
+        }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "accessToken": "pk.eyJ1IjoiZGF1ZGFpYiIsImEiOiJjbWM4NGdiYnYwOW5iMmpzOXZ4MXNkNGFqIn0._UOWlsyCyULGq4LstTt_ww"
         }
       ]
     ],

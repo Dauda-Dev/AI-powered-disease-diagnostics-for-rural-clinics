@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:15
+    container_name: ai_clinic
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: ai_clinic_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d ai_clinic_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  flyway:
+    image: flyway/flyway:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./migrations:/flyway/sql
+    command: >
+      -url=jdbc:postgresql://db:5432/ai_clinic_db
+      -user=myuser
+      -password=mypassword
+      migrate
+
+
+volumes:
+  postgres_data:
