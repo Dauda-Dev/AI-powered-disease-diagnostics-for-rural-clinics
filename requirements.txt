@@ -13,6 +13,6 @@ flask_bcrypt
 flask-jwt-extended
 psycopg2-binary
 # flask-socketio 
-eventlet
-flask_apscheduler
+# eventlet
+# flask_apscheduler
 # websockets
