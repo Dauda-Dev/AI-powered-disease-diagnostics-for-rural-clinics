@@ -11,7 +11,7 @@ groq
 flask_sqlalchemy
 flask_bcrypt
 flask-jwt-extended
-psycopg2-binary
+# psycopg2-binary
 # flask-socketio 
 # eventlet
 # flask_apscheduler
