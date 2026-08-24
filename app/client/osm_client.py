@@ -3,6 +3,11 @@ import requests
 def fetch_hospitals_from_osm(lat, lon, radius_km=5):
     overpass_url = "https://overpass-api.de/api/interpreter"
 
+    headers = {
+        "User-Agent": "ai-clinic-backend/1.0 (rural clinic diagnostics app)",
+        "Accept": "application/json",
+    }
+
     # Overpass QL query to find hospitals within a radius of (lat, lon)
     query = f"""
     [out:json][timeout:25];
@@ -14,7 +19,7 @@ def fetch_hospitals_from_osm(lat, lon, radius_km=5):
     out center;
     """
 
-    response = requests.get(overpass_url, params={'data': query})
+    response = requests.post(overpass_url, data={"data": query}, headers=headers, timeout=60)
     response.raise_for_status()
     data = response.json()
 

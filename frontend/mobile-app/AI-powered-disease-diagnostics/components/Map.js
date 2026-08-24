@@ -14,7 +14,7 @@ export default function Map({ location, hospitals, selectedHospital }) {
 
   async function getRoute(start, end) {
     try {
-      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=pk.eyJ1IjoiZGF1ZGFpYiIsImEiOiJjbWNjaDdlNXgwNnI0MmlzN2VjcWNzZTltIn0.ev8abgU9fmjs2HSzSKQbYA`;
+      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.EXPO_PUBLIC_MAPBOX_TOKEN}`;
       const res = await fetch(url);
       const json = await res.json();
       console.log(res.status, json);

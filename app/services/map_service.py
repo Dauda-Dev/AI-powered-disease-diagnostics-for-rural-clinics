@@ -38,10 +38,14 @@ def getAmenityInfo(latitude, longitude, radius_km):
         HospitalMarker.lat.between(min_lat, max_lat),
         HospitalMarker.lng.between(min_lon, max_lon)
     ).all()
-    if len(hospitalMarkers) == 0 or len(hospitalMarkers) < 5 or hospitalMarkers is None:
-        # Fetch from OSM if no markers found
+    if len(hospitalMarkers) < 5:
+        # Fetch from OSM if not enough markers found
         fetch_amenity_list = fetch_hospitals_from_osm(latitude, longitude, radius_km)
         save_hospitals(fetch_amenity_list)
+        hospitalMarkers = HospitalMarker.query.filter(
+            HospitalMarker.lat.between(min_lat, max_lat),
+            HospitalMarker.lng.between(min_lon, max_lon)
+        ).all()
     # Precise distance filter
     amenity_list = []
     for hospital in hospitalMarkers:

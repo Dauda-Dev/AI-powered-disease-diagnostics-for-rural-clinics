@@ -1,1 +1,1 @@
-export const BASE_URL= 'http://172.20.20.230:5000'
+export const BASE_URL= 'https://ai-powered-disease-diagnostics-for-rural.onrender.com'
