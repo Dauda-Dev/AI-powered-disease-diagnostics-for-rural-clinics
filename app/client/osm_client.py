@@ -1,8 +1,13 @@
 import requests
 
-def fetch_hospitals_from_osm(lat, lon, radius_km=5):
-    overpass_url = "https://overpass-api.de/api/interpreter"
+OVERPASS_ENDPOINTS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+]
 
+
+def fetch_hospitals_from_osm(lat, lon, radius_km=5):
     headers = {
         "User-Agent": "ai-clinic-backend/1.0 (rural clinic diagnostics app)",
         "Accept": "application/json",
@@ -19,9 +24,20 @@ def fetch_hospitals_from_osm(lat, lon, radius_km=5):
     out center;
     """
 
-    response = requests.post(overpass_url, data={"data": query}, headers=headers, timeout=60)
-    response.raise_for_status()
-    data = response.json()
+    data = None
+    last_error = None
+    for endpoint in OVERPASS_ENDPOINTS:
+        try:
+            response = requests.post(endpoint, data={"data": query}, headers=headers, timeout=60)
+            response.raise_for_status()
+            data = response.json()
+            break
+        except requests.RequestException as e:
+            last_error = e
+            continue
+
+    if data is None:
+        raise RuntimeError(f"All Overpass endpoints failed, last error: {last_error}")
 
     hospitals = []
 
