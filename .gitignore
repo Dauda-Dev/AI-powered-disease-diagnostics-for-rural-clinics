@@ -3,3 +3,5 @@ appvenv/
 venv/
 __pycache__/
 *.pyc
+server.log
+server.err.log
